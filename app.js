@@ -8,8 +8,8 @@ var verbose = require('debug')('webot-example:verbose');
 var app = express();
 
 // 实际使用时，这里填写你在微信公共平台后台填写的 token
-var wx_token = process.env.WX_TOKEN || 'keyboardcat123';
-var wx_token2 = process.env.WX_TOKEN_2 || 'weixinToken2';
+var wx_token = process.env.WX_TOKEN || 'mathjoy';
+var wx_token2 = process.env.WX_TOKEN_2 || 'mathjoy';
 
 // 建立多个实例，并监听到不同 path ，
 var webot2 = new webot.Webot();
@@ -31,14 +31,14 @@ webot2.watch(app, { token: wx_token2, path: '/wechat_2' });
 app.use(express.cookieParser());
 // 为了使用 waitRule 功能，需要增加 session 支持
 app.use(express.session({
-  secret: 'abced111',
+  secret: '235ee17af796754c65c61dda1504cea1',
   store: new express.session.MemoryStore()
 }));
 // 在生产环境，你应该将此处的 store 换为某种永久存储。
 // 请参考 http://expressjs.com/2x/guide.html#session-support
 
 // 在环境变量提供的 $PORT 或 3000 端口监听
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 80;
 app.listen(port, function(){
   log("Listening on %s", port);
 });
