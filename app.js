@@ -4,6 +4,15 @@ var webot = require('weixin-robot');
 var log = require('debug')('webot-example:log');
 var verbose = require('debug')('webot-example:verbose');
 
+
+var wechat = require('wechat');
+var config = {
+  token: 'mathjoy',
+  appid: 'wx766cfa35eaf8f41e',
+  encodingAESKey: '235ee17af796754c65c61dda1504cea1'
+};
+
+
 // 启动服务
 var app = express();
 
@@ -26,6 +35,48 @@ webot.watch(app, { token: wx_token, path: '/wechat' });
 
 // 后面指定的 path 不可为前面实例的子目录
 webot2.watch(app, { token: wx_token2, path: '/wechat_2' });
+
+
+
+
+
+app.use(express.query());
+app.use('/wechat', wechat(config, function (req, res, next) {
+  // 微信输入信息都在req.weixin上
+  var message = req.weixin;
+  if (message.FromUserName === 'diaosi') {
+    // 回复屌丝(普通回复)
+    res.reply('hehe');
+  } else if (message.FromUserName === 'text') {
+    //你也可以这样回复text类型的信息
+    res.reply({
+      content: 'text object',
+      type: 'text'
+    });
+  } else if (message.FromUserName === 'hehe') {
+    // 回复一段音乐
+    res.reply({
+      type: "music",
+      content: {
+        title: "来段音乐吧",
+        description: "一无所有",
+        musicUrl: "http://mp3.com/xx.mp3",
+        hqMusicUrl: "http://mp3.com/xx.mp3",
+        thumbMediaId: "thisThumbMediaId"
+      }
+    });
+  } else {
+    // 回复高富帅(图文回复)
+    res.reply([
+      {
+        title: '你来我家接我吧',
+        description: '这是女神与高富帅之间的对话',
+        picurl: 'http://nodeapi.cloudfoundry.com/qrcode.jpg',
+        url: 'http://nodeapi.cloudfoundry.com/'
+      }
+    ]);
+  }
+}));
 
 // 如果需要 session 支持，sessionStore 必须放在 watch 之后
 app.use(express.cookieParser());
