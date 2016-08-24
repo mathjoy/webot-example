@@ -131,7 +131,7 @@ app.post('/', function(req, res) {
     weixin.loop(req, res);
 
 });
-var port =3000
-app.listen(3000,function(){
+var port =80
+app.listen(port,function(){
     console.log("Listening on %s", port);
 });
