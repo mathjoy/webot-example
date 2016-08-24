@@ -12,7 +12,8 @@
     "underscore": "~1.4",
     "debug": "~0.7.2",
     "js-yaml": "~2.0.3",
-    "weixin-robot": "~0.5.0"
+    "weixin-robot": "~0.5.0",
+    "wechat":"2.0.3"
   },
   "devDependencies": {
     "mocha": "~1.13.0",
