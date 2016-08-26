@@ -22,7 +22,7 @@ app.get('/', function(req, res) {
 });
 
 // config
-weixin.token = '你的token';
+weixin.token = 'mathjoy';
 
 // 监听文本消息
 weixin.textMsg(function(msg) {
@@ -126,6 +126,7 @@ weixin.eventMsg(function(msg) {
 
 // Start
 app.post('/', function(req, res) {
+    console.log(" get request:");
 
     // loop
     weixin.loop(req, res);
