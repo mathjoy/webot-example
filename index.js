@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // 接入验证
 app.get('/', function(req, res) {
+    console.log(" root get called:");
 
     // 签名成功
     if (weixin.checkSignature(req)) {
